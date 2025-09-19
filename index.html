@@ -6,51 +6,124 @@
 <title>Mahalaxmi Wholesaler</title>
 <style>
   :root{
-    --green:#27ae60; --dark:#222;
-    --card-bg: #fff;
+    --green:#2874f0; 
+    --dark:#222;
+    --card-bg:#fff;
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0;font-family: "Segoe UI", Roboto, Arial;
-    background:#f3f6f8;color:#222;
-  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",Roboto,Arial,sans-serif;background:#f1f3f6;color:#222;}
+
+  /* header */
   header{
-    background: linear-gradient(90deg,var(--green), #2ecc71);
-    color:#fff;padding:18px 12px;text-align:center;
-    font-size:20px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,0.12)
+    background:var(--green);
+    color:#fff;
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;z-index:100;
   }
-  .container{padding:14px; display:grid; gap:14px;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width:1100px; margin:12px auto;}
+  header h1{font-size:18px;font-weight:700}
+  .search-box{flex:1;margin-left:10px;}
+  .search-box input{
+    width:100%;padding:6px 10px;
+    border:none;border-radius:4px;
+    font-size:14px;
+  }
+
+  /* banner slider */
+  .banner{
+    background:#fff;
+    margin:8px;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    position:relative;
+    max-height:180px;
+  }
+  .slider{width:100%;overflow:hidden;border-radius:8px;position:relative;}
+  .slides{display:flex;width:200%;animation:slide 8s infinite;}
+  .slides img{
+    width:100%;height:180px;flex-shrink:0;display:block;object-fit:cover;
+  }
+  @keyframes slide {
+    0%{transform:translateX(0%)}
+    40%{transform:translateX(0%)}
+    50%{transform:translateX(-100%)}
+    90%{transform:translateX(-100%)}
+    100%{transform:translateX(0%)}
+  }
+  .banner-text{
+    position:absolute;bottom:12px;left:12px;
+    background:rgba(0,0,0,0.6);color:#fff;
+    padding:6px 10px;border-radius:6px;
+    font-size:14px;font-weight:600;
+  }
+
+  /* products */
+  .container{
+    padding:8px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+  }
   .card{
-    background:var(--card-bg); border-radius:12px; padding:12px;
-    box-shadow:0 6px 18px rgba(20,20,20,0.06); text-align:center; transition:transform .18s;
+    background:var(--card-bg);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:.2s;
   }
-  .card:hover{transform:translateY(-6px)}
-  .card img{width:100%; height:170px; object-fit:cover; border-radius:10px}
-  h3{margin:10px 0 6px; font-size:18px}
-  .price{color:var(--green); font-weight:700; font-size:16px; margin-bottom:8px}
-  .btn{background:var(--green); color:#fff; border:none; padding:10px 14px; border-radius:20px; cursor:pointer}
-  .btn:active{transform:scale(.99)}
-  /* order card */
-  #orderForm{display:none; max-width:420px; margin:14px auto 30px; background:#fff; border-radius:12px;
-    padding:16px; box-shadow:0 10px 30px rgba(0,0,0,0.12)}
-  #orderForm h2{color:var(--green); text-align:center; margin:6px 0 12px}
-  input, select, textarea{width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ddd; font-size:14px}
-  .row{display:flex; gap:8px}
-  .row > *{flex:1}
-  .tot{background:#f9fffb;border:1px dashed #bff0c9;padding:8px;border-radius:8px;margin-top:6px}
-  .upi-box{display:flex; gap:12px; align-items:center; justify-content:center; margin-top:8px}
-  .upi-box img{width:130px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.08)}
-  footer{background:var(--dark); color:#ddd; text-align:center; padding:12px; margin-top:18px}
-  @media (max-width:420px){
-    header{font-size:18px}
-    .card img{height:150px}
+  .card img{width:100%;height:140px;object-fit:cover}
+  h3{font-size:15px;margin:6px 0;color:#333}
+  .price{color:#388e3c;font-weight:600;font-size:14px;margin-bottom:6px}
+  .btn{
+    background:var(--green);color:#fff;border:none;
+    padding:8px 10px;border-radius:4px;font-size:14px;
+    margin-bottom:8px;cursor:pointer;
   }
+  .btn:active{transform:scale(.97)}
+
+  /* order form */
+  #orderForm{
+    display:none;max-width:420px;margin:14px auto 30px;background:#fff;border-radius:8px;
+    padding:16px;box-shadow:0 6px 20px rgba(0,0,0,0.15)
+  }
+  #orderForm h2{color:var(--green);text-align:center;margin-bottom:10px}
+  input,select,textarea{
+    width:100%;padding:10px;margin:6px 0;
+    border-radius:6px;border:1px solid #ddd;font-size:14px
+  }
+  .row{display:flex;gap:6px}
+  .row>*{flex:1}
+  .tot{background:#f9fffb;border:1px dashed #bff0c9;padding:8px;border-radius:6px;margin-top:6px}
+  .upi-box{display:flex;justify-content:center;margin-top:8px}
+  .upi-box img{width:130px;border-radius:6px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
+
+  footer{background:#fff;color:#555;text-align:center;padding:12px;font-size:13px;margin-top:20px;border-top:1px solid #ddd}
 </style>
 </head>
 <body>
 
-<header>Mahalaxmi Wholesaler — Leelan & Cotton</header>
+<header>
+  <h1>Mahalaxmi</h1>
+  <div class="search-box">
+    <input type="text" placeholder="Search for products" oninput="searchProducts(this.value)" />
+  </div>
+</header>
+
+<!-- Banner Slider -->
+<div class="banner">
+  <div class="slider">
+    <div class="slides">
+      <img src="https://i.ibb.co/wN3nDRBm/Blog-Banner-250524-Lines-sarees-Chinaya-Banaras-2.jpg" alt="Saree Banner 1">
+      <img src="https://i.ibb.co/R4JLWk5k/1.jpg" alt="Saree Banner 2">
+    </div>
+    <div class="banner-text">Explore Sarees, Linen & Cotton</div>
+  </div>
+</div>
 
 <div class="container" id="products">
   <!-- products inserted by JS -->
@@ -83,7 +156,7 @@
     <div id="upiSection" style="display:none">
       <p style="text-align:center; margin:6px 0">UPI ID: <b>yadavsandip4229-1@okicici</b></p>
       <div class="upi-box">
-        <img src="https://i.ibb.co/7tG1vQz/upi-sample.png" alt="UPI QR">
+        <img src="https://i.ibb.co/zVfLpD1v/Google-Pay-QR-1.png" alt="UPI QR">
       </div>
     </div>
 
@@ -94,11 +167,23 @@
 <footer>© 2025 Mahalaxmi Wholesaler • Shakuntala Nagar, Nawada • 📞 7091723553</footer>
 
 <script>
-/* ---------- product data (you can change image URLs/prices here) ---------- */
 const PRODUCTS = [
-  { id:5, name:'Yellow Cotton', price:130, img:'https://i.ibb.co/XkpzW4FQ/61z-Msh-K4q0-L-AC-UY1100-FMwebp.webp' },
-  { id:6, name:'Black Premium Cotton', price:170, img:'https://i.ibb.co/rfLMLBXY/61b-P0f-PBu-JL-AC-UF894-1000-QL80-FMwebp.webp' },
-  { id:7, name:'Pure White Fabric', price:140, img:'https://i.ibb.co/PZTBn9Db/61-Gq-FNpr1d-L-AC-UY1100-FMwebp-1.webp' }
+  // Fabrics
+  { id:1, name:'Yellow Linen', price:699, img:'https://i.ibb.co/XkpzW4FQ/61z-Msh-K4q0-L-AC-UY1100-FMwebp.webp' },
+  { id:2, name:'Black Premium Linen', price:699, img:'https://i.ibb.co/rfLMLBXY/61b-P0f-PBu-JL-AC-UF894-1000-QL80-FMwebp.webp' },
+  { id:3, name:'Pure White Linen', price:699, img:'https://i.ibb.co/PZTBn9Db/61-Gq-FNpr1d-L-AC-UY1100-FMwebp-1.webp' },
+
+  // Sarees
+  { id:4,  name:'Banarasi Silk Saree',      price:1599, img:'https://i.ibb.co/vCgfKbDc/IMG-20250918-WA0093.jpg' },
+  { id:5,  name:'Kanjivaram Saree',         price:1899, img:'https://i.ibb.co/ycPXzXhs/IMG-20250918-WA0092.jpg' },
+  { id:6,  name:'Printed Georgette Saree',  price:999,  img:'https://i.ibb.co/MkYCRzTW/IMG-20250918-WA0091.jpg' },
+  { id:7,  name:'Wedding Bridal Saree',     price:2499, img:'https://i.ibb.co/BHjDqG9r/IMG-20250918-WA0030.jpg' },
+  { id:8,  name:'Cotton Handloom Saree',    price:1199, img:'https://i.ibb.co/QvfgSw90/IMG-20250918-WA0089.jpg' },
+  { id:9,  name:'Designer Partywear Saree', price:1699, img:'https://i.ibb.co/Kjh0LFWX/IMG-20250918-WA0027.jpg' },
+  { id:10, name:'Soft Linen Saree',         price:1399, img:'https://i.ibb.co/zT74rdkN/IMG-20250918-WA0088.jpg' },
+  { id:11, name:'Daily Wear Saree',         price:799,  img:'https://i.ibb.co/twcDSJsS/IMG-20250918-WA0007.jpg' },
+  { id:12, name:'Fancy Embroidery Saree',   price:1499, img:'https://i.ibb.co/1f7LxWNk/IMG-20250918-WA0055.jpg' },
+  { id:13, name:'Classic Chiffon Saree',    price:1299, img:'https://i.ibb.co/zdV8HqW/IMG-20250918-WA0003.jpg' },
 ];
 
 const productsEl = document.getElementById('products');
@@ -108,17 +193,16 @@ const pricePer = document.getElementById('pricePer');
 const qtyEl = document.getElementById('quantity');
 const totalEl = document.getElementById('total');
 const upiSection = document.getElementById('upiSection');
-const form = document.getElementById('form');
 
-function renderProducts(){
-  productsEl.innerHTML = '';
-  PRODUCTS.forEach(p=>{
-    const div = document.createElement('div');
+function renderProducts(list=PRODUCTS){
+  productsEl.innerHTML='';
+  list.forEach(p=>{
+    const div=document.createElement('div');
     div.className='card';
-    div.innerHTML = `
-      <img src="${p.img}" alt="${p.name}" />
+    div.innerHTML=`
+      <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
-      <div class="price">₹${p.price} / meter</div>
+      <div class="price">₹${p.price}${p.name.includes('Saree') ? '' : ' / meter'}</div>
       <button class="btn" onclick="openForm(${p.id})">Buy Now</button>
     `;
     productsEl.appendChild(div);
@@ -126,55 +210,46 @@ function renderProducts(){
 }
 renderProducts();
 
-function openForm(productId){
-  const p = PRODUCTS.find(x=>x.id===productId);
-  productInput.value = `${p.name} - ₹${p.price}/meter`;
-  pricePer.value = p.price;
-  qtyEl.value = 1;
+function openForm(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  productInput.value=`${p.name} - ₹${p.price}${p.name.includes('Saree') ? '' : '/meter'}`;
+  pricePer.value=p.price;
+  qtyEl.value=1;
   calcTotal();
   upiSection.style.display='none';
-  orderForm.style.display = 'block';
-  window.scrollTo({ top: orderForm.offsetTop-10, behavior:'smooth' });
+  orderForm.style.display='block';
+  window.scrollTo({top:orderForm.offsetTop-10,behavior:'smooth'});
 }
 
 function calcTotal(){
-  const price = Number(pricePer.value) || 0;
-  const qty = Number(qtyEl.value) || 1;
-  totalEl.textContent = (price * qty).toFixed(0);
+  const price=Number(pricePer.value)||0;
+  const qty=Number(qtyEl.value)||1;
+  totalEl.textContent=(price*qty).toFixed(0);
 }
-qtyEl.addEventListener('input', calcTotal);
+qtyEl.addEventListener('input',calcTotal);
 
-function toggleUPI(val){
-  upiSection.style.display = (val==='UPI') ? 'block' : 'none';
-}
+function toggleUPI(v){upiSection.style.display=(v==='UPI')?'block':'none'}
 
-/* WhatsApp message: encode safely */
 function sendToWhatsApp(e){
   e.preventDefault();
-  const name = encodeURIComponent(document.getElementById('name').value.trim());
-  const mobile = encodeURIComponent(document.getElementById('mobile').value.trim());
-  const address = encodeURIComponent(document.getElementById('address').value.trim());
-  const qty = encodeURIComponent(qtyEl.value);
-  const product = encodeURIComponent(productInput.value);
-  const payment = encodeURIComponent(document.getElementById('payment').value);
-
-  if(!name || !mobile || !address || !qty || !product || !payment){
-    alert('कृपया सारे फील्ड भरें।');
-    return;
-  }
-
-  const message = `🧾 New Order\n\n📦 Product: ${product}\n📏 Quantity: ${qty} meter\n👤 Name: ${name}\n📞 Mobile: ${mobile}\n🏠 Address: ${address}\n💳 Payment: ${payment}\n💰 Total: ₹${totalEl.textContent}`;
-  const url = `https://wa.me/919142304374?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
+  const name=encodeURIComponent(document.getElementById('name').value.trim());
+  const mobile=encodeURIComponent(document.getElementById('mobile').value.trim());
+  const address=encodeURIComponent(document.getElementById('address').value.trim());
+  const qty=encodeURIComponent(qtyEl.value);
+  const product=encodeURIComponent(productInput.value);
+  const payment=encodeURIComponent(document.getElementById('payment').value);
+  if(!name||!mobile||!address||!qty||!product||!payment){alert('कृपया सारे फील्ड भरें।');return;}
+  const message=`🧾 New Order\n\n📦 Product: ${product}\n📏 Quantity: ${qty}${product.includes('Saree') ? ' saree(s)' : ' meter'}\n👤 Name: ${name}\n📞 Mobile: ${mobile}\n🏠 Address: ${address}\n💳 Payment: ${payment}\n💰 Total: ₹${totalEl.textContent}`;
+  const url=`https://wa.me/919142304374?text=${encodeURIComponent(message)}`;
+  window.open(url,'_blank');
 }
 
-/* hide form if click outside on small screens (optional) */
-document.addEventListener('click', function(e){
-  if(orderForm.style.display==='block' && !orderForm.contains(e.target) && !e.target.classList.contains('btn')){
-    // don't auto close; user may prefer explicit. // leave commented if not needed.
-    // orderForm.style.display='none';
-  }
-});
+/* search filter */
+function searchProducts(query){
+  query=query.toLowerCase();
+  const filtered=PRODUCTS.filter(p=>p.name.toLowerCase().includes(query));
+  renderProducts(filtered);
+}
 </script>
 </body>
 </html>
